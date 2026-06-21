@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shree Abayanjaneya Swami Mandir</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cinzel',serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#4b0000,#b8860b);
+}
+
+/* LANDING PAGE */
+
+#landing{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+z-index:100;
+padding:20px;
+}
+
+#landing h1{
+font-size:3rem;
+margin-bottom:20px;
+text-shadow:0 0 20px gold;
+}
+
+#landing p{
+font-size:1.2rem;
+max-width:700px;
+line-height:1.8;
+margin-bottom:40px;
+}
+
+.enter-btn{
+padding:18px 45px;
+font-size:1.2rem;
+border:none;
+border-radius:50px;
+background:gold;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 30px gold;
+transition:0.4s;
+}
+
+.enter-btn:hover{
+transform:scale(1.08);
+}
+
+/* DOORS */
+
+#doorContainer{
+position:absolute;
+width:100%;
+height:100%;
+z-index:90;
+pointer-events:none;
+}
+
+#leftDoor,
+#rightDoor{
+position:absolute;
+top:0;
+width:50%;
+height:100%;
+background:
+linear-gradient(
+45deg,
+#5d0000,
+#b8860b,
+#5d0000
+);
+transition:2.5s ease;
+}
+
+#leftDoor{
+left:0;
+border-right:5px solid gold;
+}
+
+#rightDoor{
+right:0;
+border-left:5px solid gold;
+}
+
+.openLeft{
+transform:translateX(-100%);
+}
+
+.openRight{
+transform:translateX(100%);
+}
+
+/* HANUMAN SCREEN */
+
+#hanumanScreen{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:
+radial-gradient(circle,#fff9d6,#ffe082);
+opacity:0;
+visibility:hidden;
+transition:1s;
+z-index:50;
+}
+
+#hanuman{
+width:350px;
+max-width:80%;
+cursor:pointer;
+animation:
+floatHanuman 3s ease-in-out infinite,
+glow 2s infinite alternate;
+}
+
+#hanumanScreen h2{
+margin-top:20px;
+color:#8b0000;
+font-size:2rem;
+}
+
+@keyframes floatHanuman{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-20px);
+}
+}
+
+@keyframes glow{
+from{
+filter:drop-shadow(0 0 10px gold);
+}
+to{
+filter:drop-shadow(0 0 40px orange);
+}
+}
+
+/* INVITATION */
+
+#invitation{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:white;
+opacity:0;
+visibility:hidden;
+transition:1s;
+z-index:40;
+}
+
+.card{
+width:75%;
+max-width:900px;
+position:relative;
+z-index:10;
+}
+
+.card img{
+width:100%;
+height:90vh;
+object-fit:contain;
+border-radius:20px;
+box-shadow:0 0 60px gold;
+}
+
+/* FLOWERS */
+
+.flower{
+position:absolute;
+top:-100px;
+pointer-events:none;
+z-index:999;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+
+0%{
+transform:
+translateY(-100px)
+rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:
+translateY(120vh)
+rotate(720deg);
+opacity:.9;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="landing">
+
+<h1>🕉️ Jai Hanuman 🕉️</h1>
+
+<p>
+Where devotion resides, fear disappears.<br>
+Where Hanuman is remembered,<br>
+strength, wisdom and success follow.
+</p>
+
+<button class="enter-btn" onclick="openTemple()">
+🎉 Join the Celebration 🎉
+</button>
+
+</div>
+
+<div id="doorContainer">
+<div id="leftDoor"></div>
+<div id="rightDoor"></div>
+</div>
+
+<div id="hanumanScreen">
+
+<img
+src="hanuman1.jpg"
+id="hanuman"
+onclick="showInvitation()"
+alt="Hanuman">
+
+<h2>🙏 Click Hanuman Ji 🙏</h2>
+
+</div>
+
+<div id="invitation">
+
+<div class="card">
+<img src="invitation3.jpg.jpeg" alt="Invitation">
+</div>
+
+</div>
+
+<script>
+
+function openTemple(){
+
+document.getElementById("landing").style.display="none";
+
+document.getElementById("leftDoor")
+.classList.add("openLeft");
+
+document.getElementById("rightDoor")
+.classList.add("openRight");
+
+setTimeout(()=>{
+
+document.getElementById("hanumanScreen")
+.style.visibility="visible";
+
+document.getElementById("hanumanScreen")
+.style.opacity="1";
+
+},2500);
+
+}
+
+function showInvitation(){
+
+document.getElementById("hanumanScreen")
+.style.opacity="0";
+
+setTimeout(()=>{
+
+document.getElementById("hanumanScreen")
+.style.display="none";
+
+document.getElementById("invitation")
+.style.visibility="visible";
+
+document.getElementById("invitation")
+.style.opacity="1";
+
+createFlowers();
+
+},800);
+
+}
+
+function createFlowers(){
+
+setInterval(()=>{
+
+let flower=document.createElement("div");
+
+flower.className="flower";
+
+let petals=[
+"🌸","🌺","🌼",
+"🏵️","🌷","💮"
+];
+
+flower.innerHTML=
+petals[Math.floor(Math.random()*petals.length)];
+
+flower.style.left=
+(window.innerWidth*0.25+
+Math.random()*(window.innerWidth*0.50))
++"px";
+
+flower.style.fontSize=
+(25+Math.random()*35)
++"px";
+
+flower.style.animationDuration=
+(3+Math.random()*3)
++"s";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>{
+flower.remove();
+},7000);
+
+},40);
+
+}
+
+</script>
+
+</body>
+</html>
